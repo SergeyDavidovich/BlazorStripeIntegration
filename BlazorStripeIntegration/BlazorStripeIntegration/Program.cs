@@ -1,5 +1,8 @@
 using BlazorStripeIntegration.Client.Pages;
 using BlazorStripeIntegration.Components;
+using BlazorStripeIntegration.Models;
+//using BlazorStripeIntegration.Controllers;
+using Microsoft.Extensions.Options;
 
 namespace BlazorStripeIntegration
 {
@@ -13,6 +16,7 @@ namespace BlazorStripeIntegration
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents()
                 .AddInteractiveWebAssemblyComponents();
+            builder.Services.AddControllers();    
 
             var app = builder.Build();
 
@@ -37,7 +41,7 @@ namespace BlazorStripeIntegration
                 .AddInteractiveServerRenderMode()
                 .AddInteractiveWebAssemblyRenderMode()
                 .AddAdditionalAssemblies(typeof(Client._Imports).Assembly);
-
+            app.MapControllers();
             app.Run();
         }
     }
